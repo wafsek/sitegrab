@@ -12,8 +12,8 @@ import string, random
 warnings.filterwarnings("ignore")
 
 
-"""Change there variables to your liking"""
-site_url = "https://www.heimkunnskap.no/"
+"""Change these variables to your liking"""
+site_url = "http://example.com/"
 site_dir = "site/"
 html_dir = site_dir+"html/"
 img_dir = site_dir+"img/"
