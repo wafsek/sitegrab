@@ -134,11 +134,6 @@ def steal_all_media(page, path=img_dir):
     return result
 
 
-def show_all_links():
-    for key, value in site_map.items():
-        print(key)
-
-
 def report_errors():
     f = open("links_failed", 'w')
     for link in failed_pages:
@@ -153,7 +148,6 @@ def report_errors():
 if __name__ == "__main__":
     site_links.append(site_url)
     find_site_links()
-    show_all_links()
     build_site_structure()
     copy_site_html()
     report_errors()
