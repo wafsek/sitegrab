@@ -156,4 +156,5 @@ if __name__ == "__main__":
     show_all_links()
     build_site_structure()
     copy_site_html()
+    report_errors()
 
