@@ -127,14 +127,14 @@ def steal_all_media(page, path=img_dir):
 
 
 def report_errors():
-    f = open("links_failed", 'w')
+    failed_html_error = open("links_failed", 'w')
     for link in failed_pages:
-        f.write(link)
-    f.close()
-    f2 = open("links_media", 'w')
+        failed_html_error.write(link)
+    failed_html_error.close()
+    failed_media_error = open("links_media", 'w')
     for link in failed_pages:
-        f2.write(link)
-    f2.close()
+        failed_media_error.write(link)
+    failed_media_error.close()
 
 
 if __name__ == "__main__":
