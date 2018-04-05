@@ -82,9 +82,9 @@ def copy_site_html():
     for url, path in site_map.items():
         filepath = path + "index.html"
         copy_page(filepath, url)
+        counter = counter + 1
         sys.stdout.write("\rPages copied %d" % counter)
         sys.stdout.flush()
-        counter = counter + 1
 
 
 def copy_page(filepath, url=site_url):
