@@ -25,12 +25,6 @@ failed_pages = []
 failed_media = []
 
 
-def write_html(filename, data):
-    f = open(filename, 'wb')
-    f.write(data)
-    f.close()
-
-
 def find_site_links():
     """Finds all the local links on the website."""
     print("Links to be scanned  |  Unique links found")
@@ -82,29 +76,27 @@ def build_site_structure():
 
 def copy_site_html():
     print("Unique pages found: " + str(len(site_map)))
-    html = urlopen(site_url)
-    filename = html_dir + "index.html"
-    f = open(filename, 'wb')
-    page = html.read()
-    new_page = steal_all_media(page)
-    f.write(new_page)
-    f.close()
+    filepath = html_dir + "index.html"
+    copy_page(filepath)
     counter = 1
     for url, path in site_map.items():
-        try:
-            html = urlopen(url)
-            filename = path + "index.html"
-            f = open(filename, 'wb')
-            page = html.read()
-            new_page = steal_all_media(page,path=path)
-            f.write(new_page)
-            f.close()
-        except Exception as e:
-            failed_pages.append(url)
-
+        filepath = path + "index.html"
+        copy_page(filepath, url)
         sys.stdout.write("\rPages copied %d" % counter)
         sys.stdout.flush()
         counter = counter + 1
+
+
+def copy_page(filepath, url=site_url):
+    try:
+        html = urlopen(url)
+        page = html.read()
+        new_page = steal_all_media(page)
+        f = open(filepath, 'wb')
+        f.write(new_page)
+        f.close()
+    except Exception as e:
+        failed_pages.append(url)
 
 
 def steal_all_media(page, path=img_dir):
