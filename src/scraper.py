@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 
 
 """Change these variables to your liking"""
-site_url = "http://example.com/"
+site_url = "http://fetetyper.no/"
 site_dir = "site/"
 html_dir = site_dir+"html/"
 img_dir = site_dir+"img/"
@@ -81,17 +81,17 @@ def copy_site_html():
     counter = 1
     for url, path in site_map.items():
         filepath = path + "index.html"
-        copy_page(filepath, url)
+        copy_page(filepath, url,path=path)
         counter = counter + 1
         sys.stdout.write("\rPages copied %d" % counter)
         sys.stdout.flush()
 
 
-def copy_page(filepath, url=site_url):
+def copy_page(filepath, url=site_url, path=img_dir):
     try:
         html = urlopen(url)
         page = html.read()
-        new_page = steal_all_media(page)
+        new_page = steal_all_media(page, path)
         f = open(filepath, 'wb')
         f.write(new_page)
         f.close()
